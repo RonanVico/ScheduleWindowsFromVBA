@@ -1,9 +1,12 @@
 Attribute VB_Name = "Agenda_Desagenda"
-Option Compare Database
 Option Explicit
 
 
-
+#If VBA7 Then
+    Public Declare PtrSafe Function ShellExecute Lib "Shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
+#Else
+    Public Declare Function ShellExecute Lib "Shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
+#End If
 Public Sub teste()
     Call AgendaTarefaWindows("DownloadExtratosVBA", "C:\Teste\Teste.txt", DateTime.Date, DateTime.time)
 End Sub
@@ -118,5 +121,4 @@ err_handler:
     Stop
 
 End Function
-
 
